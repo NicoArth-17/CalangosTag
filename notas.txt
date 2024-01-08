@@ -1,0 +1,15 @@
+* Ideias para implementar:
+
+    - colocar uma API pra verificar numero de telefone
+
+
+* Sequência de criação:
+
+    01. Ambiente virtual
+    02. Arquivo main.py
+    03. Criar uma pasta com os arquivos __init__.py, forms.py, models.py, routes.py
+    04. Usar Flask para criar a aplicação no arquivo __init__.py
+    05. Criar execução da aplicação no arquivo main.py
+    06. Criar banco de dados
+    07. Montar a estrutura/tabela do banco de dados no arquivo models.py
+    08. Criar um arquivo para executar a criação do banco de dados
