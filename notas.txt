@@ -10,6 +10,9 @@
     03. Criar uma pasta com os arquivos __init__.py, forms.py, models.py, routes.py
     04. Usar Flask para criar a aplicação no arquivo __init__.py
     05. Criar execução da aplicação no arquivo main.py
-    06. Criar banco de dados
+    06. Criar configurações do banco de dados
     07. Montar a estrutura/tabela do banco de dados no arquivo models.py
     08. Criar um arquivo para executar a criação do banco de dados
+    09. Implementar sistema de login e cryptografia de senha
+    10. Executar criação do banco de dados
+    11. Criar estrutura de login
