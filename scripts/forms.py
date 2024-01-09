@@ -1,8 +1,34 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
+from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
+from models import Usuario
 
+# Formulário login
 class FormLogin(FlaskForm):
-    pass
+    email = StringField('Email', validators=[Email(), DataRequired()])
+    senha = PasswordField('Senha', validators=[DataRequired(), Length(8)])
+    botao_submit = SubmitField('Confirmar')
 
+    def validate_email(self, email):
+        user = Usuario.query.filter_by(e_mail=email.data).first()
+        if not user:
+            ValidationError('Email não encontrado, faça o cadastro!')
+
+
+# Formulário cadastro
 class FormCadastro(FlaskForm):
-    pass
+    username = StringField('Usuário', validators=[DataRequired()])
+    email = StringField('Email', validators=[Email(), DataRequired()])
+    senha = PasswordField('Senha', validators=[DataRequired(), Length(8,16)])
+    senha_confirm = PasswordField('Senha', validators=[EqualTo('senha')])
+    botao_submit = SubmitField('Confirmar')
+
+    def validate_username(self, username):
+        user = Usuario.query.filter_by(user_name=username).first()
+        if user:
+            ValidationError('Usuário já existente!')
+    
+    def validate_email(self, email):
+        user = Usuario.query.filter_by(e_mail=email.data).first()
+        if user:
+            ValidationError('Email já cadastrado, faça o login!')

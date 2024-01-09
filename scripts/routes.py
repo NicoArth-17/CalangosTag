@@ -6,6 +6,10 @@ from flask_login import login_required
 def home():
     return render_template('home.html')
 
+@app.route('/cadastro')
+def cadastrar():
+    return render_template('cadastro.html')
+
 @app.route('/perfil/<usuarioX>')
 @login_required
 def perfil(usuarioX):
