@@ -1,13 +1,31 @@
 from scripts import app, bcrypt, database
 from flask import render_template, url_for, redirect
-from flask_login import login_required, login_user, logout_user
+from flask_login import login_required, login_user, logout_user, current_user
 from scripts.models import Usuario, Post
 from scripts.forms import FormLogin, FormCadastro
 
 # Back-end da página home
 @app.route('/', methods=['GET', 'POST'])
 def home():
+
     form_login = FormLogin()
+
+    # Se as informações do formulário de login forem enviadas
+    if form_login.validate_on_submit():
+
+        # Encontrando Usuário cadastrado no banco de dados pelo email inserido no formulário de login
+        User = Usuario.query.filter_by(e_mail=form_login.email.data).first()
+
+        # Se o Usuário for encontrado e senha for verificada
+        if User and bcrypt.check_password_hash(User.password, form_login.senha.data):
+
+            # Fazendo login
+            login_user(User, remember=True)
+
+            # Direcionar página de perfil
+            return redirect(url_for('perfil', usuarioX=User.user_name))
+
+    # Retornando a página home
     return render_template('home.html', formPy=form_login)
 
 # Back-end da página de cadastro
@@ -44,3 +62,14 @@ def cadastrar():
 @login_required
 def page_perfil(usuarioX):
     return render_template('perfil.html', usuario=usuarioX)
+
+# Função de logout
+@app.route('/logout')
+@login_required
+def sair():
+
+    # Deslogar
+    logout_user()
+
+    # Retornando pra página home
+    return redirect(url_for(home))
