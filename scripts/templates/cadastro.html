@@ -8,5 +8,25 @@
 <body>
     <h1>Cadastre-se</h1>
 
+    <form action="" method="post">
+
+        {{ formPy.csrf_token }}
+
+        {{ formPy.email.label() }}
+        {{ formPy.email() }}
+
+        {{ formPy.username.label() }}
+        {{ formPy.username() }}
+
+        {{ formPy.senha.label() }}
+        {{ formPy.senha() }}
+
+        {{ formPy.senha_confirm.label() }}
+        {{ formPy.senha_confirm() }}
+
+        {{ formPy.botao_submit() }}
+
+    </form>
+
 </body>
 </html>

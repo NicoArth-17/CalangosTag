@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
-from models import Usuario
+from scripts.models import Usuario, Post
 
 # Formulário login
 class FormLogin(FlaskForm):
@@ -17,8 +17,8 @@ class FormLogin(FlaskForm):
 
 # Formulário cadastro
 class FormCadastro(FlaskForm):
-    username = StringField('Usuário', validators=[DataRequired()])
     email = StringField('Email', validators=[Email(), DataRequired()])
+    username = StringField('Usuário', validators=[DataRequired()])
     senha = PasswordField('Senha', validators=[DataRequired(), Length(8,16)])
     senha_confirm = PasswordField('Senha', validators=[EqualTo('senha')])
     botao_submit = SubmitField('Confirmar')
