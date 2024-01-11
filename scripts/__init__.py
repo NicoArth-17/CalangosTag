@@ -20,4 +20,5 @@ bcrypt = Bcrypt(app)
 login_gerenciador = LoginManager(app)
 login_gerenciador.login_view = 'home'
 
+# Importar rotas por último
 from scripts import routes

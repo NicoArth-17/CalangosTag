@@ -2,6 +2,10 @@
 
     - colocar uma API pra verificar numero de telefone
 
+* Observações:
+
+    - instalar biblioteca 'email_validator'
+
 
 * Sequência de criação:
 
@@ -16,3 +20,8 @@
     09. Implementar sistema de login e cryptografia de senha
     10. Executar criação do banco de dados
     11. Criar estrutura de login
+    12. Fazer validação dos formulários de login e cadastro ao enviar as informações
+    13. Efetuar o login do usuário após logar ou cadastrar - login_user()
+    14. Redirecionar para página de perfil após login ou cadastro
+    15. Criar rota de logout da conta
+    16. Redirecionar página de perfil caso esteja no próprio perfil ou visitando outro perfil

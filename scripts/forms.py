@@ -9,6 +9,7 @@ class FormLogin(FlaskForm):
     senha = PasswordField('Senha', validators=[DataRequired(), Length(8)])
     botao_submit = SubmitField('Confirmar')
 
+    # Validação com mensagem de erro caso email inserido não seja encontrado no banco de dados
     def validate_email(self, email):
         user = Usuario.query.filter_by(e_mail=email.data).first()
         if not user:
@@ -23,11 +24,13 @@ class FormCadastro(FlaskForm):
     senha_confirm = PasswordField('Senha', validators=[EqualTo('senha')])
     botao_submit = SubmitField('Confirmar')
 
+    # Validação com mensagem de erro caso username inserido já esteja no banco de dados
     def validate_username(self, username):
-        user = Usuario.query.filter_by(user_name=username).first()
+        user = Usuario.query.filter_by(user_name=username.data).first()
         if user:
             ValidationError('Usuário já existente!')
-    
+
+    # Validação com mensagem de erro caso email inserido já esteja no banco de dados
     def validate_email(self, email):
         user = Usuario.query.filter_by(e_mail=email.data).first()
         if user:

@@ -23,7 +23,7 @@ def home():
             login_user(User, remember=True)
 
             # Direcionar página de perfil
-            return redirect(url_for('perfil', usuarioX=User.user_name))
+            return redirect(url_for('page_perfil', usuarioX=User.user_name))
 
     # Retornando a página home
     return render_template('home.html', formPy=form_login)
@@ -61,7 +61,22 @@ def cadastrar():
 @app.route('/perfil/<usuarioX>')
 @login_required
 def page_perfil(usuarioX):
-    return render_template('perfil.html', usuario=usuarioX)
+
+    # Retornar página do próprio perfil
+    if usuarioX == current_user.user_name:
+        return render_template('perfil.html', usuario=current_user)
+    
+    # Retornar página de perfil de outro usuário
+    else:
+        User = Usuario.query.filter_by(user_name=usuarioX).first()
+        
+        # Se existir a user_name deste outro usuário, retornar o perfil dele
+        if User:
+            return render_template('perfil.html', usuario=User)
+        
+        # Se não existir a user_name deste outro usuário, fazer logout e retornar a página home
+        else:
+            return redirect(url_for('sair'))
 
 # Função de logout
 @app.route('/logout')
@@ -72,4 +87,4 @@ def sair():
     logout_user()
 
     # Retornando pra página home
-    return redirect(url_for(home))
+    return redirect(url_for('home'))
