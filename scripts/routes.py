@@ -2,7 +2,7 @@ from scripts import app, bcrypt, database
 from flask import render_template, url_for, redirect
 from flask_login import login_required, login_user, logout_user, current_user
 from scripts.models import Usuario, Post
-from scripts.forms import FormLogin, FormCadastro
+from scripts.forms import FormLogin, FormCadastro, FormPost
 
 # Back-end da página home
 @app.route('/', methods=['GET', 'POST'])
@@ -27,6 +27,7 @@ def home():
 
     # Retornando a página home
     return render_template('home.html', formPy=form_login)
+
 
 # Back-end da página de cadastro
 @app.route('/cadastro', methods=['GET', 'POST'])
@@ -57,14 +58,17 @@ def cadastrar():
     # Retornando a página de cadastro
     return render_template('cadastro.html', formPy=form_cadastro)
 
+
 # Back-end da página de perfil
-@app.route('/perfil/<usuarioX>')
+@app.route('/perfil/<usuarioX>', methods=['GET', 'POST'])
 @login_required
 def page_perfil(usuarioX):
 
+    form_post = FormPost()
+
     # Retornar página do próprio perfil
     if usuarioX == current_user.user_name:
-        return render_template('perfil.html', usuario=current_user)
+        return render_template('perfil.html', usuario=current_user, formPy=form_post)
     
     # Retornar página de perfil de outro usuário
     else:
@@ -72,11 +76,12 @@ def page_perfil(usuarioX):
         
         # Se existir a user_name deste outro usuário, retornar o perfil dele
         if User:
-            return render_template('perfil.html', usuario=User)
+            return render_template('perfil.html', usuario=User, formPy = None)
         
         # Se não existir a user_name deste outro usuário, fazer logout e retornar a página home
         else:
             return redirect(url_for('sair'))
+
 
 # Função de logout
 @app.route('/logout')

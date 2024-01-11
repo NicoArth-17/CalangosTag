@@ -6,11 +6,32 @@
     <title>Perfil</title>
 </head>
 <body>
+    <!-- Título/Nome do usuário -->
     <h1>{{ usuario.user_name }}</h1>
 
+    <!-- Link de logout -->
     <a href="{{ url_for('sair') }}">sair</a>
 
+    <!-- Formulário para postar imagem -->
+    <!-- Se existir formulário, pois a função estará disponível apenas para a página do próprio perfil e não visitando a página de perfil de outro usuário -->
+    {% if formPy %}
+
+        <form method="post" enctype="multipart/form-data">
+            {{ formPy.csrf_token }}
+
+            {{ formPy.imagem }}
+
+            {{ formPy.botao_submit }}
+
+        </form>
+
+    {% endif %}
+
+    <!-- Loop para mostrar nos posts no perfil -->
     {% for post in usuario.posts %}
+
+        <img src="{{ url_for('static', filename='img_posts/default.png') }}">
+
     {% endfor %}
 </body>
 </html>

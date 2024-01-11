@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, FileField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
 from scripts.models import Usuario, Post
 
@@ -35,3 +35,9 @@ class FormCadastro(FlaskForm):
         user = Usuario.query.filter_by(e_mail=email.data).first()
         if user:
             ValidationError('Email já cadastrado, faça o login!')
+
+
+# Formulário post
+class FormPost(FlaskForm):
+    imagem = FileField('Adicionar imagem', validators=[DataRequired()])
+    botao_submit = SubmitField('Confirmar')

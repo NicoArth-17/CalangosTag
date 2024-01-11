@@ -25,3 +25,5 @@
     14. Redirecionar para página de perfil após login ou cadastro
     15. Criar rota de logout da conta
     16. Redirecionar página de perfil caso esteja no próprio perfil ou visitando outro perfil
+    17. Criar pasta 'static' para css, imagens utilizadas no site e imagens postadas por usuários
+    18. Configurar onde será o upload dos posts no __init__.py
