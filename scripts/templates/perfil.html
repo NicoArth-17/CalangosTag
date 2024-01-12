@@ -30,7 +30,7 @@
     <!-- Loop para mostrar nos posts no perfil -->
     {% for post in usuario.posts %}
 
-        <img src="{{ url_for('static', filename='img_posts/default.png') }}">
+        <img src="{{ url_for('static', filename='img_posts/{}'.format(post.imagem)) }}">
 
     {% endfor %}
 </body>

@@ -3,6 +3,8 @@ from flask import render_template, url_for, redirect
 from flask_login import login_required, login_user, logout_user, current_user
 from scripts.models import Usuario, Post
 from scripts.forms import FormLogin, FormCadastro, FormPost
+import os
+from werkzeug.utils import secure_filename
 
 # Back-end da página home
 @app.route('/', methods=['GET', 'POST'])
@@ -66,11 +68,33 @@ def page_perfil(usuarioX):
 
     form_post = FormPost()
 
-    # Retornar página do próprio perfil
+    # Verificando se o usuário está no próprio perfil
     if usuarioX == current_user.user_name:
+
+        # Verificando envio do formulário de post
+        if form_post.validate_on_submit():
+
+            # Criando um nome seguro para o arquivo
+            arquivo = form_post.imagem.data
+            nome_arquivo_seguro = secure_filename(arquivo.filename)
+
+            # Direcionando local de salvamento
+            caminho = os.path.join(os.path.abspath(os.path.dirname(__file__)),
+                              app.config['UPLOAD_FOLDER'],
+                              nome_arquivo_seguro)
+            
+            # Salvando arquivo
+            arquivo.save(caminho)
+
+            # Registrando nome do arquivo no banco de dados
+            img = Post(imagem=nome_arquivo_seguro, id_usuario=current_user.id)
+            database.session.add(img)
+            database.session.commit()
+
+        # Retornar página do próprio perfil
         return render_template('perfil.html', usuario=current_user, formPy=form_post)
     
-    # Retornar página de perfil de outro usuário
+    # Caso o usuário esteja em outro perfil
     else:
         User = Usuario.query.filter_by(user_name=usuarioX).first()
         
