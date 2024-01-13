@@ -107,6 +107,17 @@ def page_perfil(usuarioX):
             return redirect(url_for('sair'))
 
 
+# Back-end da página de feed
+@app.route('/feed')
+@login_required
+def timeline():
+
+    # Buscando todas as fotos no banco de dados e ordeando pela data de criação de forma decrescente
+    imagens = Post.query.order_by(Post.data_criacao.desc()).all()
+    
+    # Retornar a página de feed
+    return render_template('feed.html', imgs=imagens)
+
 # Função de logout
 @app.route('/logout')
 @login_required
