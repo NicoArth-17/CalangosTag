@@ -1,18 +1,65 @@
 @charset "UTEF-8";
 
+@font-face {
+    font-family: 'marhey';
+    src: url('../fonte/Marhey-SemiBold.ttf');
+}
+
+*{}
+
+:root{
+    
+}
+
 body
 {
-    background-color: rgb(141, 245, 141);
+    background-color: rgba(46, 44, 44, 0.836);
+    background-image: url(../calangoIMG/calangoLogCell.jpg);
+    background-size: cover;
     position: relative;
+    font-family: 'marhey';
 }
 
 header
 {
     text-align: center;
+    border: 1px solid black;
+}
+
+header > h1 
+{
+    text-shadow: 1px 1px 5px rgba(145, 255, 0, 0.750);
+    font-size: 50px;
+    color: black;
 }
 
 nav
-{}
+{
+    width: 350px;
+    margin: 0px 0px;
+    font-size: 25px;
+    display: inline-flex;
+}
+
+nav > a
+{
+    width: 50%;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+nav > a#log
+{
+
+}
+
+nav > a#cad
+{
+    background-color: rgba(0, 0, 0, 0.150);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.200);
+    border-left: 2px solid rgba(0, 0, 0, 0.200);
+}
 
 main
 {
@@ -20,20 +67,30 @@ main
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    border-style: solid;
-    border: 1px solid black;
-    margin-top: 20%;
+    border: 5px solid black;
+    box-shadow: 3px 3px 7px rgba(145, 255, 0, 0.750);
+    border-radius: 15px;
+    margin-top: 50%;
     text-align: center;
-
+    height: 400px;
+    width: 350px;
+    background-color: rgba(255, 255, 255, 0.425);
 }
 
 div.titulo-form
-{}
+{
+}
 
-div.formulario
-{}
+main > div#formulario
+{
+}
 
-input.dados
+div.formu
+{
+    margin: 20px 0px;
+}
+
+form > div > #dados
 {
     background-color: rgba(195, 182, 182, 0.271);
     border-radius: 15px;
@@ -42,11 +99,18 @@ input.dados
     height: 30px;
 }
 
-input.botao
+form > div > #label
+{
+    margin-left: -70%;
+}
+
+form > div > #botao
 {
     background-color: rgba(195, 182, 182, 0.271);
     border-radius: 15px;
     border: 2px solid black;
-    width: 70px;
+    width: 100px;
     height: 30px;
+    cursor: pointer;
 }
+

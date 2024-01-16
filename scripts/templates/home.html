@@ -3,26 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
     <title>Home</title>
 </head>
 <body>
-    <h1>Faça o Login</h1>
+    <!-- Título/Cabeçalho -->
+    <header>
+        <h1>Calango's Tags</h1>
+    </header>
 
-    <form action="" method="post">
 
-        {{ formPy.csrf_token }}
+    <main>
+        <!-- Navegação entre Login e Cadastro -->
+        <nav>
+            <a id="log" href="#">Login</a>
+            <a id="cad" href=" {{ url_for('cadastrar') }} ">Cadastrar</a>
+        </nav>
+    
+        <div id="formulario">
+            <div class="titulo-form">
+                <h2>Bem-vindo Calango!</h2>
+            </div>
+            <!-- Formulário Login -->
+            <form action="" method="post">
+                <!-- token de segurança -->
+                {{ formPy.csrf_token }}
+                <div class="formu" >
+                    {{ formPy.email.label(id="label") }}
+                    <br>
+                    {{ formPy.email(id="dados") }}
+                </div>
+                <div class="formu" >
+                    {{ formPy.senha.label(id="label") }}
+                    <br>
+                    {{ formPy.senha(id="dados") }}
+                </div>
+                <div class="formu" >
+                    {{ formPy.botao_submit(id="botao") }}
+                </div>
+        </div>
+    
+        </form>
 
-        {{ formPy.email.label() }}
-        {{ formPy.email() }}
+    </main>
 
-        {{ formPy.senha.label() }}
-        {{ formPy.senha() }}
-
-        {{ formPy.botao_submit() }}
-
-    </form>
-
-    <a href="{{ url_for('cadastrar') }}">Cadastre-se</a>
 </body>
 </html>
