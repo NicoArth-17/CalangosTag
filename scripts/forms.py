@@ -7,7 +7,7 @@ from scripts.models import Usuario, Post
 class FormLogin(FlaskForm):
     email = StringField('Email', validators=[Email(), DataRequired()])
     senha = PasswordField('Senha', validators=[DataRequired(), Length(8)])
-    botao_submit = SubmitField('Confirmar')
+    botao_submit = SubmitField('Entrar')
 
     # Validação com mensagem de erro caso email inserido não seja encontrado no banco de dados
     def validate_email(self, email):

@@ -5,112 +5,156 @@
     src: url('../fonte/Marhey-SemiBold.ttf');
 }
 
-*{}
+@font-face {
+    font-family: 'dancing';
+    src: url('../fonte/DancingScript-Medium.ttf');
+}
+
+@font-face {
+    font-family: 'jost';
+    src: url('../fonte/Jost-Regular.ttf');
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
 
 :root{
-    
+    --font_titulo: 'dancing';
+    --font_secundaria: 'marhey';
+    --font_formal: 'jost', 'Courier New', Courier, monospace;
+
+    --cor_calango: rgb(145, 255, 0); 
 }
 
 body
 {
     background-color: rgba(46, 44, 44, 0.836);
-    background-image: url(../calangoIMG/calangoLogCell.jpg);
+    background-image: url(../calangoIMG/calangoLogCell-Escura.jpg);
     background-size: cover;
-    position: relative;
-    font-family: 'marhey';
 }
 
 header
 {
     text-align: center;
-    border: 1px solid black;
+    margin: 20px 0px;
 }
 
 header > h1 
 {
-    text-shadow: 1px 1px 5px rgba(145, 255, 0, 0.750);
-    font-size: 50px;
+    text-shadow: 1px 1px 3px var(--cor_calango);
+    font-size: 70px;
     color: black;
+    font-family: var(--font_titulo);
+    word-spacing: 15px;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 380px;
+    padding: 10px;
 }
 
-nav
+main
+{
+
+    box-shadow: 1px 1px 10px black;
+    border-radius: 20px;
+    text-align: center;
+    height: 370px;
+    width: 350px;
+    background-color: rgba(129, 129, 129, 0);
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    text-shadow: 1px 1px 3px black;
+}
+
+main > nav
 {
     width: 350px;
     margin: 0px 0px;
     font-size: 25px;
     display: inline-flex;
+    font-family: var(--font_formal);
 }
 
-nav > a
+main > nav > a
 {
     width: 50%;
     padding: 10px;
     text-decoration: none;
-    color: black;
+    color: white;
 }
 
-nav > a#log
+main > nav > a#log
 {
-
+    text-shadow: 1px 1px 3px var(--cor_calango);
 }
 
-nav > a#cad
+main > nav > a#cad
 {
     background-color: rgba(0, 0, 0, 0.150);
     border-bottom: 2px solid rgba(0, 0, 0, 0.200);
     border-left: 2px solid rgba(0, 0, 0, 0.200);
 }
 
-main
+main > nav > a#cad:hover
 {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border: 5px solid black;
-    box-shadow: 3px 3px 7px rgba(145, 255, 0, 0.750);
-    border-radius: 15px;
-    margin-top: 50%;
-    text-align: center;
-    height: 400px;
-    width: 350px;
-    background-color: rgba(255, 255, 255, 0.425);
+    text-shadow: 1px 1px 3px var(--cor_calango);
 }
 
-div.titulo-form
+main > div > div.titulo-form
 {
-}
-
-main > div#formulario
-{
+    margin-top: 20px;
+    font-family: var(--font_secundaria);
+    word-spacing: 5px;
 }
 
 div.formu
 {
+    font-family: var(--font_secundaria);
     margin: 20px 0px;
 }
 
-form > div > #dados
-{
-    background-color: rgba(195, 182, 182, 0.271);
-    border-radius: 15px;
-    border: 2px solid black;
-    width: 300px;
-    height: 30px;
-}
-
-form > div > #label
+main > div > form > div > #label
 {
     margin-left: -70%;
 }
 
-form > div > #botao
+main > div > form > div > #dados
 {
-    background-color: rgba(195, 182, 182, 0.271);
+    background-color: rgba(26, 26, 26, 0.500);
     border-radius: 15px;
-    border: 2px solid black;
-    width: 100px;
+    border: 2px solid whitesmoke;
+    width: 300px;
     height: 30px;
-    cursor: pointer;
+    box-shadow: 2px 2px 3px black;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 20px;
 }
 
+main > div > form > div > #botao
+{
+    background-color: rgba(0, 0, 0, 0.500);
+    border-radius: 15px;
+    border: 2px solid whitesmoke;
+    width: 120px;
+    height: 35px;
+    cursor: pointer;
+    color: white;
+    font-family: var(--font_secundaria);
+    text-shadow: 1px 1px 3px black;
+    font-size: 20px;
+    margin-top: 10px;
+    box-shadow: 1px 1px 3px black;
+}
+
+main > div > form > div > #botao:hover
+{
+    border-color: black;
+    color: var(--cor_calango);
+    box-shadow: 1px 1px 3px var(--cor_calango);
+}
