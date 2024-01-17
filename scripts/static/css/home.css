@@ -31,14 +31,17 @@
 body
 {
     background-color: rgba(46, 44, 44, 0.836);
-    background-image: url(../calangoIMG/calangoLogCell-Escura.jpg);
+    background-image: url(../calangoIMG/calangoLogin-600.jpg);
     background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
 }
 
 header
 {
+    display: block;
     text-align: center;
-    margin: 20px 0px;
 }
 
 header > h1 
@@ -48,7 +51,7 @@ header > h1
     color: black;
     font-family: var(--font_titulo);
     word-spacing: 15px;
-    margin-top: 50px;
+    margin-top: 30px;
     margin-left: auto;
     margin-right: auto;
     width: 380px;
@@ -57,7 +60,7 @@ header > h1
 
 main
 {
-
+    display: block;
     box-shadow: 1px 1px 10px black;
     border-radius: 20px;
     text-align: center;
@@ -66,6 +69,7 @@ main
     background-color: rgba(129, 129, 129, 0);
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 50px;
     color: white;
     text-shadow: 1px 1px 3px black;
 }
@@ -157,4 +161,27 @@ main > div > form > div > #botao:hover
     border-color: black;
     color: var(--cor_calango);
     box-shadow: 1px 1px 3px var(--cor_calango);
+}
+
+@media (min-width: 768) and (max-width: 991){
+
+    body
+    {
+        background-image: url(../calangoIMG/calangoLogin-768.jpg);
+    }
+}
+
+@media (min-width: 992) and (max-width: 1200){
+
+    body
+    {
+        background-image: url(../calangoIMG/calangoLogin-768.jpg);
+    }
+}
+
+@media (min-width: 1201){
+
+    body{
+        background-image: url(../calangoIMG/WhatsApp\ Image\ 2024-01-06\ at\ 13.20.03.jpeg);
+    }
 }
