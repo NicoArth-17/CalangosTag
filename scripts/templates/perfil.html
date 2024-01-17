@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/perfil.css') }}">
     <title>Perfil</title>
 </head>
 <body>
@@ -13,29 +14,41 @@
         <a href="{{ url_for('sair') }}">Sair</a> <!-- Link de logout -->
     </nav>
 
-    <!-- Título/Nome do usuário -->
-    <h1>{{ usuario.user_name }}</h1>
+    <div class="container">
 
-    <!-- Formulário para postar imagem -->
-    <!-- Se existir formulário, pois a função estará disponível apenas para a página do próprio perfil e não visitando a página de perfil de outro usuário -->
-    {% if formPy %}
+        <!-- Título/Nome do usuário -->
+        <h1>{{ usuario.user_name }}</h1>
 
-        <form method="post" enctype="multipart/form-data">
-            {{ formPy.csrf_token }}
+        <!-- Formulário para postar imagem -->
+        <!-- Se existir formulário, pois a função estará disponível apenas para a página do próprio perfil e não visitando a página de perfil de outro usuário -->
+        {% if formPy %}
 
-            {{ formPy.imagem }}
+            <form method="post" enctype="multipart/form-data">
+                {{ formPy.csrf_token }}
 
-            {{ formPy.botao_submit }}
+                {{ formPy.imagem }}
 
-        </form>
+                {{ formPy.botao_submit }}
 
-    {% endif %}
+            </form>
 
-    <!-- Loop para mostrar os posts no perfil -->
-    {% for post in usuario.posts %}
+        {% endif %}
 
-        <img src="{{ url_for('static', filename='img_posts/{}'.format(post.imagem)) }}">
+        <div class="painel_fotos">
 
-    {% endfor %}
+            <!-- Loop para mostrar os posts no perfil -->
+            {% for post in usuario.posts %}
+            
+                <div class="foto">
+                    <img src="{{ url_for('static', filename='img_posts/{}'.format(post.imagem)) }}">
+                </div>
+
+            {% endfor %}    
+        </div>
+
+    </div>
+
+
+    
 </body>
 </html>

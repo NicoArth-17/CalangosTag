@@ -3,29 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/feed.css') }}">
     <title>Timeline</title>
 </head>
 <body>
-    <h1>Feed Principal</h1>
+    
+    <div class="container">
 
-    <!-- Barra de navegação -->
-    <nav>
-        <a href="{{ url_for('page_perfil', usuarioX=current_user.user_name) }}">Perfil</a>
-        <a href="{{ url_for('timeline') }}">Feed</a>
-        <a href="{{ url_for('sair') }}">Sair</a> <!-- Link de logout -->
-    </nav>
+        <h1>Feed Principal</h1>
 
-    <!-- Loop para mostrar os posts na timeline -->
-    {% for post in imgs %}
+        <!-- Barra de navegação -->
+        <nav>
+            <a href="{{ url_for('page_perfil', usuarioX=current_user.user_name) }}">Perfil</a>
+            <a href="{{ url_for('timeline') }}">Feed</a>
+            <a href="{{ url_for('sair') }}">Sair</a> <!-- Link de logout -->
+        </nav>
 
-    <!-- Inserindo a imagem dentro de um link com direcionamento para o perfil que fez o Post -->
-    <a href="{{ url_for('page_perfil', usuarioX=post.usuario.user_name) }}">
 
-        <img src="{{ url_for('static', filename='img_posts/{}'.format(post.imagem)) }}">
+        
 
-    </a>
+        <div class="painel_fotos">
 
-    {% endfor %}
+            <!-- Loop para mostrar os posts na timeline -->
+            {% for post in imgs %}
+
+                <!-- Inserindo a imagem dentro de um link com direcionamento para o perfil que fez o Post -->
+                <a href="{{ url_for('page_perfil', usuarioX=post.usuario.user_name) }}" class="foto">
+
+                    <img src="{{ url_for('static', filename='img_posts/{}'.format(post.imagem)) }}">
+
+                </a>
+
+            {% endfor %}
+        </div>
+    </div>
+    
 
 </body>
 </body>
