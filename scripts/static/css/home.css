@@ -38,8 +38,6 @@ body
     background-attachment: fixed;
     height: 100vh;
     display: flexbox;
-    align-items: center;
-    position: relative;
 }
 
 header
