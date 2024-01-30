@@ -1,6 +1,10 @@
 * Ideias para implementar:
 
     - colocar uma API pra verificar numero de telefone
+    - Mensagem de perfil editável
+    - notificações de postagens
+    - tirar espaços digitados da caixa de inserir email
+    - link nav mudar cor a partir da dela em que o usuario estiver navegando
 
 * Observações:
 

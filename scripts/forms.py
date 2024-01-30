@@ -40,4 +40,4 @@ class FormCadastro(FlaskForm):
 # Formulário post
 class FormPost(FlaskForm):
     imagem = FileField('Adicionar imagem', validators=[DataRequired()])
-    botao_submit = SubmitField('Confirmar')
+    botao_submit = SubmitField('Enviar')

@@ -9,30 +9,42 @@
 <body>
     <!-- Barra de navegação -->
     <nav>
-        <a href="{{ url_for('page_perfil', usuarioX=current_user.user_name) }}">Perfil</a>
-        <a href="{{ url_for('timeline') }}">Feed</a>
-        <a href="{{ url_for('sair') }}">Sair</a> <!-- Link de logout -->
+        <div>
+            <a href="{{ url_for('page_perfil', usuarioX=current_user.user_name) }}">Perfil</a>
+            <a href="{{ url_for('timeline') }}">Feed</a>
+            <a href="{{ url_for('sair') }}">Sair</a> <!-- Link de logout -->
+        </div>
     </nav>
 
+    <main>
+        <!-- Mensagem do perfil -->
+        <h1>Hello world!</h1>
+        
+        <div>
+            <!-- Se existir formulário, pois a função estará disponível apenas para a página do próprio perfil e não visitando a página de perfil de outro usuário -->
+            {% if formPy %}
+
+                <!-- Formulário para postar imagem -->
+                <form method="post" enctype="multipart/form-data">
+                    {{ formPy.csrf_token }}
+
+                    <label for="selecionar_arquivo" id="inserir_post" class="form_post">
+                        Publicar Arte
+                        {{ formPy.imagem(id="selecionar_arquivo") }}
+                    </label>
+
+                    <span id="imagem-arquivo"></span>
+                    
+                    {{ formPy.botao_submit(id="enviar_arquivo", class="form_post") }}
+                    
+                </form>
+
+            {% endif %}
+        </div>
+    </main>
+    
+    
     <div class="container">
-
-        <!-- Título/Nome do usuário -->
-        <h1>{{ usuario.user_name }}</h1>
-
-        <!-- Formulário para postar imagem -->
-        <!-- Se existir formulário, pois a função estará disponível apenas para a página do próprio perfil e não visitando a página de perfil de outro usuário -->
-        {% if formPy %}
-
-            <form method="post" enctype="multipart/form-data">
-                {{ formPy.csrf_token }}
-
-                {{ formPy.imagem }}
-
-                {{ formPy.botao_submit }}
-
-            </form>
-
-        {% endif %}
 
         <div class="painel_fotos">
 
@@ -48,7 +60,17 @@
 
     </div>
 
-
+    <script>
+        let input = document.getElementById("selecionar_arquivo");
+        let imagemArquivo = document.getElementById("imagem-arquivo");
+  
+        input.addEventListener("change", () => {
+          let inputImagem = document.querySelector("input[type=file]").files[0];
+  
+          imagemArquivo.classList.add("visivel");
+          imagemArquivo.innerText = inputImagem.name;
+        });
+    </script>
     
 </body>
 </html>
