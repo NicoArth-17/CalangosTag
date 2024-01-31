@@ -4,41 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/feed.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='calangoIMG/fav_calango.png') }}" type="image/x-icon">
     <title>Timeline</title>
 </head>
 <body>
-    
-    <div class="container">
 
-        <h1>Feed Principal</h1>
-
-        <!-- Barra de navegação -->
-        <nav>
+    <!-- Barra de navegação -->
+    <nav>
+        <div>
             <a href="{{ url_for('page_perfil', usuarioX=current_user.user_name) }}">Perfil</a>
             <a href="{{ url_for('timeline') }}">Feed</a>
             <a href="{{ url_for('sair') }}">Sair</a> <!-- Link de logout -->
-        </nav>
-
-
-        
-
-        <div class="painel_fotos">
-
-            <!-- Loop para mostrar os posts na timeline -->
-            {% for post in imgs %}
-
-                <!-- Inserindo a imagem dentro de um link com direcionamento para o perfil que fez o Post -->
-                <a href="{{ url_for('page_perfil', usuarioX=post.usuario.user_name) }}" class="foto">
-
-                    <img src="{{ url_for('static', filename='img_posts/{}'.format(post.imagem)) }}">
-
-                </a>
-
-            {% endfor %}
         </div>
-    </div>
-    
+    </nav>
 
-</body>
+    <div class="painel_fotos">
+
+        <!-- Loop para mostrar os posts na timeline -->
+        {% for post in imgs %}
+
+            <!-- Inserindo a imagem dentro de um link com direcionamento para o perfil que fez o Post -->
+            <a href="{{ url_for('page_perfil', usuarioX=post.usuario.user_name) }}" class="foto">
+
+                <img src="{{ url_for('static', filename='img_posts/{}'.format(post.imagem)) }}">
+
+            </a>
+
+        {% endfor %}
+    </div>
+
+    <footer>
+        <div>
+            <p>copyright - <a href="https://github.com/NicoArth-17" target="_blank">Nicolas Arthur</a></p>
+        </div>
+    </footer>
+
 </body>
 </html>

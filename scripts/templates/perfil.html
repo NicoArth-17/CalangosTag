@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/perfil.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='calangoIMG/fav_calango.png') }}" type="image/x-icon">
     <title>Perfil</title>
 </head>
 <body>
@@ -20,45 +21,48 @@
         <!-- Mensagem do perfil -->
         <h1>Hello world!</h1>
         
+        
+        <!-- Se existir formulário, pois a função estará disponível apenas para a página do próprio perfil e não visitando a página de perfil de outro usuário -->
+        {% if formPy %}
         <div>
-            <!-- Se existir formulário, pois a função estará disponível apenas para a página do próprio perfil e não visitando a página de perfil de outro usuário -->
-            {% if formPy %}
+            <!-- Formulário para postar imagem -->
+            <form method="post" enctype="multipart/form-data">
+                {{ formPy.csrf_token }}
 
-                <!-- Formulário para postar imagem -->
-                <form method="post" enctype="multipart/form-data">
-                    {{ formPy.csrf_token }}
+                <label for="selecionar_arquivo" id="inserir_post" class="form_post">
+                    Publicar Arte
+                    {{ formPy.imagem(id="selecionar_arquivo") }}
+                </label>
 
-                    <label for="selecionar_arquivo" id="inserir_post" class="form_post">
-                        Publicar Arte
-                        {{ formPy.imagem(id="selecionar_arquivo") }}
-                    </label>
-
-                    <span id="imagem-arquivo"></span>
-                    
+                <span id="imagem-arquivo"></span>
+                
+                <div>
                     {{ formPy.botao_submit(id="enviar_arquivo", class="form_post") }}
-                    
-                </form>
-
-            {% endif %}
-        </div>
-    </main>
-    
-    
-    <div class="container">
-
-        <div class="painel_fotos">
-
-            <!-- Loop para mostrar os posts no perfil -->
-            {% for post in usuario.posts %}
-            
-                <div class="foto">
-                    <img src="{{ url_for('static', filename='img_posts/{}'.format(post.imagem)) }}">
                 </div>
-
-            {% endfor %}    
+                
+            </form>
         </div>
+        {% endif %}
+        
+    </main>  
 
+    <div class="painel_fotos">
+
+        <!-- Loop para mostrar os posts no perfil -->
+        {% for post in usuario.posts %}
+        
+            <div class="foto">
+                <img src="{{ url_for('static', filename='img_posts/{}'.format(post.imagem)) }}">
+            </div>
+
+        {% endfor %}    
     </div>
+
+    <footer>
+        <div>
+            <p>copyright - <a href="https://github.com/NicoArth-17" target="_blank">Nicolas Arthur</a></p>
+        </div>
+    </footer>
 
     <script>
         let input = document.getElementById("selecionar_arquivo");

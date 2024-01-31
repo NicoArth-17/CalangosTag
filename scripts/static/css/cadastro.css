@@ -67,7 +67,7 @@ main
     box-shadow: 1px 1px 10px black;
     border-radius: 20px;
     text-align: center;
-    height: 370px;
+    height: 550px;
     width: 350px;
     background-color: rgba(129, 129, 129, 0);
     margin-left: auto;
@@ -96,17 +96,19 @@ main > nav > a
 
 main > nav > a#log
 {
-    text-shadow: 1px 1px 3px var(--cor_calango);
-}
-
-main > nav > a#cad
-{
+    
     background-color: rgba(0, 0, 0, 0.150);
     border-bottom: 2px solid rgba(0, 0, 0, 0.200);
     border-left: 2px solid rgba(0, 0, 0, 0.200);
 }
 
-main > nav > a#cad:hover
+main > nav > a#cad
+{
+    text-shadow: 1px 1px 3px var(--cor_calango);
+    
+}
+
+main > nav > a#log:hover
 {
     text-shadow: 1px 1px 3px var(--cor_calango);
 }
@@ -171,9 +173,6 @@ footer
     font-family: var(--font_formal);
     height: 70px;
     text-align: center;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
 }
 
 footer > div

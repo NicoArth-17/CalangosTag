@@ -5,6 +5,10 @@
     - notificações de postagens
     - tirar espaços digitados da caixa de inserir email
     - link nav mudar cor a partir da dela em que o usuario estiver navegando
+    - botao enviar foto disponivel apenas depois da foto ser inserida
+    - pesquisar perfil
+    - compartilhar imagem
+    - tirar espaço de onde ficaria a inserçao de arquivo visitando outro perfil
 
 * Observações:
 

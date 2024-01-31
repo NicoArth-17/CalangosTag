@@ -3,30 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href=" {{ url_for('static', filename='css/cadastro.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='calangoIMG/fav_calango.png') }}" type="image/x-icon">
     <title>Cadastro</title>
 </head>
 <body>
-    <h1>Cadastre-se</h1>
+    <!-- Título/Cabeçalho -->
+    <header>
+        <h1>Calango's Tags</h1>
+    </header>
 
-    <form action="" method="post">
+    <main>
+        <!-- Navegação entre Login e Cadastro -->
+        <nav>
+            <a id="log" href=" {{ url_for('home') }} ">Login</a>
+            <a id="cad" href="#">Cadastrar</a>
+        </nav>
+    
+        <div id="formulario">
 
-        {{ formPy.csrf_token }}
+            <div class="titulo-form">
+                <h2>Bem-vindo Calango!</h2>
+            </div>
 
-        {{ formPy.email.label() }}
-        {{ formPy.email() }}
+            <!-- Formulário Login -->
+            <form action="" method="post">
+                <!-- token de segurança -->
+                {{ formPy.csrf_token }}
+        
+                <!-- email -->
+                <div class="formu">
+                    {{ formPy.email.label(id="label") }}
+                    <br>
+                    {{ formPy.email(id="dados") }}
+                </div>
+        
+                <!-- username -->
+                <div class="formu">
+                    {{ formPy.username.label(id="label") }}
+                    <br>
+                    {{ formPy.username(id="dados") }}
+                </div>
+        
+                <!-- senha -->
+                <div class="formu">
+                    {{ formPy.senha.label(id="label") }}
+                    <br>
+                    {{ formPy.senha(id="dados") }}
+                </div>
 
-        {{ formPy.username.label() }}
-        {{ formPy.username() }}
+                <!-- confirmar senha -->
+                <div class="formu">
+                    {{ formPy.senha_confirm.label(id="label") }}
+                    <br>
+                    {{ formPy.senha_confirm(id="dados") }}
+                </div>
+                
+                <!-- botao submit -->
+                <div class="formu">
+                    {{ formPy.botao_submit(id='botao') }}
+                </div>
+        
+            </form>
+        </div>
+    </main>
 
-        {{ formPy.senha.label() }}
-        {{ formPy.senha() }}
-
-        {{ formPy.senha_confirm.label() }}
-        {{ formPy.senha_confirm() }}
-
-        {{ formPy.botao_submit() }}
-
-    </form>
+    <footer>
+        <div>
+            <p>copyright - <a href="https://github.com/NicoArth-17" target="_blank">Nicolas Arthur</a></p>
+        </div>
+    </footer>
 
 </body>
 </html>

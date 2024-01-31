@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='calangoIMG/fav_calango.png') }}" type="image/x-icon">
     <title>Home</title>
 </head>
 <body>
@@ -21,31 +22,44 @@
         </nav>
     
         <div id="formulario">
+
             <div class="titulo-form">
                 <h2>Bem-vindo Calango!</h2>
             </div>
+
             <!-- Formulário Login -->
             <form action="" method="post">
                 <!-- token de segurança -->
                 {{ formPy.csrf_token }}
+
+                <!-- email -->
                 <div class="formu" >
                     {{ formPy.email.label(id="label") }}
                     <br>
                     {{ formPy.email(id="dados") }}
                 </div>
+
+                <!-- senha -->
                 <div class="formu" >
                     {{ formPy.senha.label(id="label") }}
                     <br>
                     {{ formPy.senha(id="dados") }}
                 </div>
+
+                <!-- botao submit -->
                 <div class="formu">
                     {{ formPy.botao_submit(id="botao") }}
                 </div>
-        </div>
     
-        </form>
-
+            </form>
+        </div>
     </main>
+
+    <footer>
+        <div>
+            <p>copyright - <a href="https://github.com/NicoArth-17" target="_blank">Nicolas Arthur</a></p>
+        </div>
+    </footer>
 
 </body>
 </html>
