@@ -13,7 +13,7 @@ class FormLogin(FlaskForm):
     def validate_email(self, email):
         user = Usuario.query.filter_by(e_mail=email.data).first()
         if not user:
-            ValidationError('Email não encontrado, faça o cadastro!')
+            raise ValidationError('Email não encontrado, faça o cadastro!')
 
 
 # Formulário cadastro
@@ -28,13 +28,13 @@ class FormCadastro(FlaskForm):
     def validate_username(self, username):
         user = Usuario.query.filter_by(user_name=username.data).first()
         if user:
-            ValidationError('Usuário já existente!')
+            raise ValidationError('Usuário já existente!')
 
     # Validação com mensagem de erro caso email inserido já esteja no banco de dados
     def validate_email(self, email):
         user = Usuario.query.filter_by(e_mail=email.data).first()
         if user:
-            ValidationError('Email já cadastrado, faça o login!')
+            raise ValidationError('Email já cadastrado, faça o login!')
 
 
 # Formulário post

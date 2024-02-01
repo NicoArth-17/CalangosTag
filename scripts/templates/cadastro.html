@@ -34,14 +34,38 @@
                 <!-- email -->
                 <div class="formu">
                     {{ formPy.email.label(id="label") }}
+
+                    {% if formPy.email.errors %}
+                        {% for erro in formPy.email.errors %}
+
+                            <p>{{ erro }}</p>
+
+                            <style>
+                                main{
+                                    height: 630px;
+                                }
+                            </style>
+
+                        {% endfor %}
+                    {% endif %}
+
                     <br>
+
                     {{ formPy.email(id="dados") }}
                 </div>
         
                 <!-- username -->
                 <div class="formu">
                     {{ formPy.username.label(id="label") }}
+
+                    {% if formPy.username.errors %}
+                        {% for erro in formPy.username.errors %}
+                            <p>{{ erro }}</p>
+                        {% endfor %}
+                    {% endif %}
+
                     <br>
+
                     {{ formPy.username(id="dados") }}
                 </div>
         

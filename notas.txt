@@ -9,6 +9,7 @@
     - pesquisar perfil
     - compartilhar imagem
     - tirar espaço de onde ficaria a inserçao de arquivo visitando outro perfil
+    - visual de confirmaçao de cadastro
 
 * Observações:
 
@@ -35,3 +36,5 @@
     16. Redirecionar página de perfil caso esteja no próprio perfil ou visitando outro perfil
     17. Criar pasta 'static' para css, imagens utilizadas no site e imagens postadas por usuários
     18. Configurar onde será o upload dos posts no __init__.py
+    19. Estilizar as rotas/html
+    20. Implementar erros de preenchimento de campos nas rotas/html

@@ -120,10 +120,19 @@ main > div > div.titulo-form
     word-spacing: 5px;
 }
 
-div.formu
+main > div > form > div.formu
 {
     font-family: var(--font_secundaria);
     margin: 20px 0px;
+}
+
+main > div > form > div.formu > p
+{
+    font-family: var(--font_formal);
+    color: red;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.596);
+    text-align: left;
+    margin: 0px 20px;
 }
 
 main > div > form > div > #label
@@ -265,13 +274,14 @@ footer > div > p > a:hover
 
     header
     {
-        margin-top: 110px;
-        margin-bottom: 100px;
+        margin-top: 0px;
+        margin-bottom: 10px;
     }
 
     header > h1
     {
         font-size: 100px;
         width: 700px;
+        margin: 0px auto;
     }
 }

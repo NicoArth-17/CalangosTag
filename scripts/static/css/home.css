@@ -143,6 +143,15 @@ main > div > form > div > #dados
     font-size: 20px;
 }
 
+main > div > form > div > p
+{
+    font-family: var(--font_formal);
+    color: red;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.596);
+    text-align: left;
+    margin: 0px 20px;
+}
+
 main > div > form > div > #botao
 {
     background-color: rgba(0, 0, 0, 0.500);
@@ -266,13 +275,24 @@ footer > div > p > a:hover
 
     header
     {
-        margin-top: 110px;
-        margin-bottom: 100px;
+        margin-top: 0px;
+        margin-bottom: 10px;
     }
 
     header > h1
     {
         font-size: 100px;
         width: 700px;
+        margin: 0px auto;
+    }
+
+    main
+    {
+        margin-bottom: 0px;
+    }
+
+    footer
+    {
+        position:relative;
     }
 }

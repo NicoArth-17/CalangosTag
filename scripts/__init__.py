@@ -2,13 +2,23 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
+import os
 
 # Criar aplicação
 app = Flask(__name__)
 
 # Banco de dados
-    # Local armazenado
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///comunidade.db'
+    # Se estiver Online (deploy pelo render)
+if os.getenv("DEBUG") == 0:
+    link_sql = os.getenv("DATABASE_URL")
+
+    # Se estiver Local (para modificações)
+else:
+    link_sql = 'sqlite:///comunidade.db'
+
+    # Setando link do banco de dados
+app.config['SQLALCHEMY_DATABASE_URI'] = link_sql
+
     # Base de dados
 database = SQLAlchemy(app)
 

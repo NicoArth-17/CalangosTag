@@ -35,6 +35,22 @@
                 <!-- email -->
                 <div class="formu" >
                     {{ formPy.email.label(id="label") }}
+
+                    <!-- se houver algum erro a ser validado (email nao cadastrado) -->
+                    {% if formPy.email.errors %}
+                        <!-- loop para aprensentar os erros -->
+                        {% for erro in formPy.email.errors %}
+
+                            <p>{{ erro }}</p>
+                            <style>
+                                main{
+                                    height: 410px;
+                                }
+                            </style>
+
+                        {% endfor %}
+                    {% endif %}
+
                     <br>
                     {{ formPy.email(id="dados") }}
                 </div>
