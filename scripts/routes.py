@@ -28,7 +28,7 @@ def home():
             return redirect(url_for('page_perfil', usuarioX=User.user_name))
 
     # Retornando a página home
-    return render_template('index.html', formPy=form_login)
+    return render_template('home.html', formPy=form_login)
 
 
 # Back-end da página de cadastro
