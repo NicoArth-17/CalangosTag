@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
+from flask_mail import Mail
 import os
 
 # Criar aplicação
@@ -32,6 +33,21 @@ login_gerenciador.login_view = 'home'
 
 # Upload de posts
 app.config['UPLOAD_FOLDER'] = 'static/img_posts'
+
+# Email de confirmação
+# app.config['MAIL_SERVER']: 'localhost'
+app.config['MAIL_PORT'] : 25
+app.config['MAIL_USE_TLS'] : False
+app.config['MAIL_USE_SSL'] : True
+app.config['MAIL_DEBUG'] : 
+app.config['MAIL_USERNAME'] : 
+app.config['MAIL_PASSWORD'] : 
+app.config['MAIL_DEFAULT_SENDER'] : None
+app.config['MAIL_MAX_EMAILS'] : None
+app.config['MAIL_SUPPRESS_SEND'] : True
+app.config['MAIL_ASCII_ATTACHMENTS'] : False
+
+mail = Mail(app)
 
 # Importar rotas por último
 from scripts import routes

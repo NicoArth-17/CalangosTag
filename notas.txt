@@ -10,6 +10,9 @@
     - compartilhar imagem
     - tirar espaço de onde ficaria a inserçao de arquivo visitando outro perfil
     - visual de confirmaçao de cadastro
+    - foto de perfil
+    - botao muda com o site traduzido
+    - recuperar senha
 
 * Observações:
 

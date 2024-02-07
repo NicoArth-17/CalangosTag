@@ -13,7 +13,7 @@ class FormLogin(FlaskForm):
     def validate_email(self, email):
         user = Usuario.query.filter_by(e_mail=email.data).first()
         if not user:
-            raise ValidationError('Email não encontrado, faça o cadastro!')
+            raise ValidationError()
 
 
 # Formulário cadastro
@@ -40,4 +40,10 @@ class FormCadastro(FlaskForm):
 # Formulário post
 class FormPost(FlaskForm):
     imagem = FileField('Adicionar imagem', validators=[DataRequired()])
+    botao_submit = SubmitField('Enviar')
+
+
+# Formulário código confirmação email
+class FormCodConfirm(FlaskForm):
+    codigo = StringField('Código', validators=[DataRequired()])
     botao_submit = SubmitField('Enviar')
