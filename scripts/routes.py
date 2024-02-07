@@ -1,12 +1,10 @@
-from scripts import app, bcrypt, database, mail
-from flask import render_template, url_for, redirect, request
+from scripts import app, bcrypt, database
+from flask import render_template, url_for, redirect
 from flask_login import login_required, login_user, logout_user, current_user
 from scripts.models import Usuario, Post
-from scripts.forms import FormLogin, FormCadastro, FormPost, FormCodConfirm
+from scripts.forms import FormLogin, FormCadastro, FormPost
 import os
 from werkzeug.utils import secure_filename
-from flask_mail import Message, email_dispatched
-from itsdangerous import URLSafeTimedSerializer, SignatureExpired # Cria um ink temporário aleatório
 
 # Back-end da página home
 @app.route('/', methods=['GET', 'POST'])
@@ -50,53 +48,17 @@ def cadastrar():
                        e_mail = form_cadastro.email.data,
                        password = senha_crypt)
         
-        # Confirmar se email existe
-            # Configurar link secreto e gerar token
-        secret_link = URLSafeTimedSerializer()
-        secret_token = secret_link.dumps(User.e_mail, salt='email-confirm')
-
-            # Criar email
-        msg = Message('Confirmar email.',
-                        sender = 'nicoartur17@gmail.com',
-                        recipient = [User.e_mail])
-        
-            # Criar link de confirmação
-        link_confirmacao = url_for('email_confirm', user=User, token=secret_token, link=secret_link, _external=True)
-
-            # Mensagem onde vai o link de confirmação no email
-        msg.body = f'Hey hey Calango(a), seu código de confirmação é: {link_confirmacao}.'
-        
-            # Enviar email
-        mail.send(msg)
-
-        return redirect(url_for('email_confirm', user=User, token=secret_token, link=secret_link))
-
-    # Retornando a página de cadastro
-    return render_template('cadastro.html', formPy=form_cadastro)
-
-
-# Back-end da página de confirmação do email
-@app.route('/confirmar-email/<token>', methods=['GET', 'POST'])
-def email_confirm(user, token, link):
-
-    # Tentar acessar o link de confirmação
-    try:
-        user.e_mail = link.loads(token, salt='email-confirm', max_age=30)
-
         # Adicionado Usuario cadastrado ao banco de dados
-        database.session.add(user)
+        database.session.add(User)
         database.session.commit()
 
         # Logar usuário cadastrado
-        login_user(user, remember=True)
+        login_user(User, remember=True)
 
-        return redirect(url_for('page_perfil', usuarioX=user.user_name))
+        return redirect(url_for('page_perfil', usuarioX=User.user_name))
 
-    # Erro após passar o tempo de expiração do link
-    except SignatureExpired: 
-        return '<h1>Link de confirmação expirado.</h1>'
-                # Retornando a página de código de confirmação
-                # return render_template('ConfirmEmail.html')
+    # Retornando a página de cadastro
+    return render_template('cadastro.html', formPy=form_cadastro)
 
 
 # Back-end da página de perfil
@@ -165,4 +127,4 @@ def sair():
     logout_user()
 
     # Retornando pra página home
-    return redirect(url_for('home'))
+    return redirect(url_for('index'))
