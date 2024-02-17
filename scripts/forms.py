@@ -21,7 +21,7 @@ class FormCadastro(FlaskForm):
     email = StringField('Email', validators=[Email(), DataRequired()])
     username = StringField('Usuário', validators=[DataRequired()])
     senha = PasswordField('Senha', validators=[DataRequired(), Length(8,16)])
-    senha_confirm = PasswordField('Senha', validators=[EqualTo('senha')])
+    senha_confirm = PasswordField('Confirmar senha', validators=[EqualTo('senha')])
     botao_submit = SubmitField('Confirmar')
 
     # Validação com mensagem de erro caso username inserido já esteja no banco de dados

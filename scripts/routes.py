@@ -63,10 +63,12 @@ def cadastrar():
         # msg['To'] = form_cadastro.email.data
 
             # Servidor email
-        yag = yagmail.SMTP('nicoartur17@gmail.com', 'peaijubcagzunfis')
+        yag = yagmail.SMTP('nicoartur17@gmail.com', oauth2_file='OAuth2_Email/credencial.json')
 
             # Enviar email
-        yag.send(to=form_cadastro.email.data, subject='Confirme seu cadastro', contents=f'Hey hey Calango(a), acesse o link para finalizar seu cadastro: {link}')
+        yag.send(to=form_cadastro.email.data, 
+                 subject='Confirme seu cadastro', 
+                 contents=f'Hey hey Calango(a), acesse o link para finalizar seu cadastro:{link}')
 
         # with smtplib.SMTP('smtp.gamil.com', 587, timeout=60) as smtp:
         #     smtp.starttls()
