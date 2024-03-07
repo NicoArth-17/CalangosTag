@@ -1,14 +1,10 @@
 from scripts import app, bcrypt, database
-from flask import render_template, url_for, redirect, session
+from flask import render_template, url_for, redirect
 from flask_login import login_required, login_user, logout_user, current_user
 from scripts.models import Usuario, Post
 from scripts.forms import FormLogin, FormCadastro, FormPost
 import os
 from werkzeug.utils import secure_filename
-import uuid
-from email.message import EmailMessage
-import smtplib
-import yagmail
 
 # Back-end da página home
 @app.route('/', methods=['GET', 'POST'])
@@ -47,52 +43,6 @@ def cadastrar():
         # Senha cryptografada
         senha_crypt = bcrypt.generate_password_hash(form_cadastro.senha.data)
 
-        # Conferindo email válido
-            # Token acossiado ao link de confirmação
-        Token = str(uuid.uuid4())
-
-            # Link de confirmação completo
-        link = url_for('email_confirm', token=Token, form_cadastro=form_cadastro,
-                       senha_crypt=senha_crypt, _external=True)
-
-            # Enviar email
-        # msg = EmailMessage()
-        # msg.set_content(f'Hey hey Calango(a), acesse o link para finalizar seu cadastro: {link}')
-        # msg['Subject'] = 'Confirme seu cadastro'
-        # msg['From'] = 'nicoartur17@gmail.com'
-        # msg['To'] = form_cadastro.email.data
-
-            # Servidor email
-        yag = yagmail.SMTP('nicoartur17@gmail.com', oauth2_file='OAuth2_Email/credencial.json')
-
-            # Enviar email
-        yag.send(to=form_cadastro.email.data, 
-                 subject='Confirme seu cadastro', 
-                 contents=f'Hey hey Calango(a), acesse o link para finalizar seu cadastro:{link}')
-
-        # with smtplib.SMTP('smtp.gamil.com', 587, timeout=60) as smtp:
-        #     smtp.starttls()
-        #     smtp.login('nicoartur17@gmail.com', 'peai jubc agzu nfis')
-        #     smtp.send_message(msg)
-
-            # Salvar token para verificar posteriormente
-        session['token'] = Token
-        session['email'] = form_cadastro.email.data
-
-        return redirect(url_for('home'))
-
-    # Retornando a página de cadastro
-    return render_template('cadastro.html', formPy=form_cadastro)
-
-@app.route('/cadastro/confirmar-email/<token>', methods=['GET', 'POST'])
-def email_confirm(token, form_cadastro, senha_crypt):
-
-    # Verificar se o token na sessão é igual ao token na url
-    if 'token' in session and session['token'] == token:
-
-        # Recuperar token e o email da sessão
-        token = session.pop('token')
-
         # Completar cadastro
             # Inserindo informações do formulário de cadastro na class/tabela Usuário
         User = Usuario(user_name = form_cadastro.username.data,
@@ -107,9 +57,9 @@ def email_confirm(token, form_cadastro, senha_crypt):
         login_user(User, remember=True)
 
         return redirect(url_for('page_perfil', usuarioX=User.user_name))
-    
-    else:
-        return '<h1>Link de confirmação inválido!</h1>'
+
+    # Retornando a página de cadastro
+    return render_template('cadastro.html', formPy=form_cadastro)
 
 
 # Back-end da página de perfil

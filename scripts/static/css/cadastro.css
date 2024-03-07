@@ -140,6 +140,11 @@ main > div > form > div > #label
     margin-left: -70%;
 }
 
+main > div > form > div > #label2
+{
+    margin-left: -50%;
+}
+
 main > div > form > div > #dados
 {
     background-color: rgba(26, 26, 26, 0.500);

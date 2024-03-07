@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, FileField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
-from scripts.models import Usuario, Post
+from scripts.models import Usuario
 
 # Formulário login
 class FormLogin(FlaskForm):

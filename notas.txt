@@ -17,7 +17,7 @@
 
 * Observações:
 
-    - instalar biblioteca 'email_validator'
+    - biblioteca instalada, mas não é importada 'email_validator'
 
 
 * Sequência de criação:
