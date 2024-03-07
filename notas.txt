@@ -13,6 +13,7 @@
     - foto de perfil
     - botao muda com o site traduzido
     - recuperar senha
+    - opção de excluir foto
 
 * Observações:
 
